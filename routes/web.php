@@ -15,6 +15,7 @@ Route::get('/', 'LoginController@create');
 Route::get('/login', 'LoginController@create');
 Route::post('/login', 'LoginController@authenticate');
 Route::get('/logout', 'LoginController@destroy');
+//Route::post('/login', [ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
