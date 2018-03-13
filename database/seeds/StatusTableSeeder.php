@@ -48,6 +48,26 @@ class StatusTableSeeder extends Seeder
                 'title' => "Unit Head’s Reject",
                 'code' => 'UNIT_HEAD_REJECT',
                 'style' => 'bg-danger'
+            ],
+            [
+                'title' => 'Originator’s Reject',
+                'code' => 'ORIGINATOR_REJECT',
+                'style' => 'bg-danger'
+            ],
+            [
+                'title' => 'Admin’s Reject',
+                'code' => 'ADMIN_REJECT',
+                'style' => 'bg-danger'
+            ],
+            [
+                'title' => 'Management Reject',
+                'code' => 'SUPERADMIN_REJECT',
+                'style' => 'bg-danger'
+            ],
+            [
+                'title' => 'Draft',
+                'code' => 'DRAFT',
+                'style' => 'bg-danger'
             ]
         ];
 
