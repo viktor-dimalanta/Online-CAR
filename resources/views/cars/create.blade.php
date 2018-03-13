@@ -5,11 +5,7 @@
         {{ csrf_field() }}
 
         <div class="bg-light lter b-b wrapper-md">
-<<<<<<< HEAD
             <h1 class="m-n font-thin h4">Originator's Window 5sample</h1>
-=======
-            <h1 class="m-n font-thin h4">Originator's Window EDITED 7</h1>
->>>>>>> c69a01456da871e7c61241e55f04d4bc850e3f1b
         </div>
 
         @include('layouts.partials._errors')
