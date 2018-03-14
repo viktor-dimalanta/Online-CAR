@@ -105,8 +105,8 @@
                             <div class="form-group">
                                 <div class="col-sm-12 {{-- text-center--}}">
                                     <button type="submit" class="btn btn-default">Cancel</button>
-                                    <button type="submit" class="btn btn-warning" value='0'>Draft</button>
-                                    <button type="submit" class="btn btn-success">Submit CAR</button>
+                                    <button type="submit" class="btn btn-warning" name="draft_button" value="11">Draft</button>
+                                    <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
                                 </div>
                             </div>
                         </div>

@@ -103,9 +103,20 @@ class CarController extends Controller
         $car->document_no = $request->document_no;
         $car->save();
 
+        if ($request->has('save'))
+        {
         // 3. Add new CAR status
         $status = Status::find(1); // Unit Head’s Acceptance
         $car->statuses()->attach($status);
+        }
+        else if ($request->has('draft_button'))
+        {
+        // 3. Add new CAR status
+        $status = Status::find(11); //Draft
+        $car->statuses()->attach($status);
+        }
+
+
 
         // 4. Add notification for assignee ()
         DB::table('notifiables')->insert(
