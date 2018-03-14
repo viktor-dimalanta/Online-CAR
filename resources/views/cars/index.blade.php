@@ -49,10 +49,10 @@
 
 
                                 {{ $car->assignee->first_name }}
-                                
+
                             </td>
                             <td class="text-right">
-                                {{-- $car->statuses->last()->title --}}ERROR HERE
+                                {{ car->statuses->first()->title }}
                             </td>
                             <td>
                                 <div class="progress progress-sm active m-t-xs m-b-none">
