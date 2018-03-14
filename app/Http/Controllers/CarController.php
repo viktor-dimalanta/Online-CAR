@@ -83,6 +83,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $statusDefault = 1;
         //dd($request->all());
 
         // 1. Validate
@@ -103,18 +104,12 @@ class CarController extends Controller
         $car->document_no = $request->document_no;
         $car->save();
 
-        if ($request->has('save'))
-        {
-        // 3. Add new CAR status
-        $status = Status::find(1); // Unit Head’s Acceptance
-        $car->statuses()->attach($status);
+        if ($request->has('draft_button')) {
+          $statusDefault = 11;
         }
-        else if ($request->has('draft_button'))
-        {
-        // 3. Add new CAR status
-        $status = Status::find(11); //Draft
+
+        $status = Status::find($statusDefault);
         $car->statuses()->attach($status);
-        }
 
 
 
