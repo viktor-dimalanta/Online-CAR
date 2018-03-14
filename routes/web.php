@@ -20,7 +20,7 @@ Route::get('/logout', 'LoginController@destroy');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::get('/cars', 'CarController@index');
+    Route::get('/cars', 'CarController@index')->name('index');
     Route::get('/cars/create', 'CarController@create');
     Route::post('/cars', 'CarController@store')->name('cars');
     Route::get('/cars/{car}', 'CarController@show');
