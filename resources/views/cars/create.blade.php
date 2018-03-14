@@ -104,8 +104,8 @@
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12 {{-- text-center--}}">
-                                    <button type="submit" class="btn btn-default">Cancel</button>
-                                    <button type="submit" class="btn btn-warning" name="draft_button" value="11">Draft</button>
+                                    <button type="button" href="{{ route('index') }}" class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-warning" name="draft_button">Draft</button>
                                     <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
                                 </div>
                             </div>
