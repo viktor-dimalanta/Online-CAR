@@ -52,7 +52,7 @@
 
                             </td>
                             <td class="text-right">
-                                {{$car->statuses->title}}
+                                {{$car->statuses}}ERROR HERE
                             </td>
                             <td>
                                 <div class="progress progress-sm active m-t-xs m-b-none">
