@@ -53,7 +53,7 @@
                             </td>
                             <td class="text-right">
 
-                                {{$car->statuses()->first()->title}}ERROR HERE
+                                {{$car->statuses()->first()->title}}
 
                             </td>
                             <td>
