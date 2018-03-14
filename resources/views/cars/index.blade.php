@@ -46,7 +46,10 @@
                             </td>
                             <td class="text-left">
                                 {{-- $car->assignee->first_name --}}
-                                {{ $car }}
+
+                                @if (car->assignee)
+                                {{ $car->first_name }}
+                                @endif
                             </td>
                             <td class="text-right">
                                 {{-- $car->statuses->last()->title --}}ERROR HERE
