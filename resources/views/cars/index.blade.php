@@ -47,9 +47,9 @@
                             <td class="text-left">
                                 {{-- $car->assignee->first_name --}}
 
-                                @if (car->assignee)
+
                                 {{ $car->assignee->first_name }}
-                                @endif
+                                
                             </td>
                             <td class="text-right">
                                 {{-- $car->statuses->last()->title --}}ERROR HERE
