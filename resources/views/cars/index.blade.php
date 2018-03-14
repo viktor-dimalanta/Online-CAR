@@ -48,7 +48,7 @@
                                 {{-- $car->assignee->first_name --}}
 
                                 @if (car->assignee)
-                                {{ $car->first_name }}
+                                {{ $car->assignee->first_name }}
                                 @endif
                             </td>
                             <td class="text-right">
