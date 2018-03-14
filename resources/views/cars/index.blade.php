@@ -31,7 +31,7 @@
                         <tr>
                             <th style="width: 6%">ID</th>
                             <th style="width: 50%;">Description</th>
-                            <th class="text-left" style="width: 10%">Originator</th>
+                            <th class="text-left" style="width: 10%">Unit Head</th>
                             <th class="text-right" style="width: 20%">Status</th>
                             <th class="text-left" style="width: 8%"></th>
                             <th class="text-center" style="width: 12%">Action</th>
@@ -52,7 +52,7 @@
 
                             </td>
                             <td class="text-right">
-                                {{ car->statuses->first()->title }}
+                                {{-- $car->statuses->last()->title --}}ERROR HERE
                             </td>
                             <td>
                                 <div class="progress progress-sm active m-t-xs m-b-none">
