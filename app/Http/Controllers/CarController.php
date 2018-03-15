@@ -38,7 +38,7 @@ class CarController extends Controller
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
                     ->get();
-        $cars = Car::paginate(10);
+        //$cars = Car::paginate(10);
         /*$cars = DB::table('cars')
                 ->where('originator_id' , '=', Auth::id())
                 ->orWhere('assignee_id' , '=', Auth::id())
