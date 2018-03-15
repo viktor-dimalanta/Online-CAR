@@ -23,6 +23,7 @@
                             @foreach ($statuses as $status)
                                 <option value="{{ $status->id }}">{{ $status->title }}</option>
                             @endforeach
+                            <option value="Unit Head’s Acceptance">Unit Head’s Acceptance</option>
                         </select>
                         <button class="btn btn-sm btn-default">Apply</button>
                       </form>
