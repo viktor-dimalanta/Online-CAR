@@ -53,7 +53,7 @@
                             </td>
                             <td class="text-right">
                                 try
-                                {{$car->statuses()->sortyByDesc('id')->title}}
+                                {{$car->statuses()->title}}
 
                             </td>
                             <td>
