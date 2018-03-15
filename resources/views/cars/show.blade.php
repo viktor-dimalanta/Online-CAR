@@ -29,9 +29,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Source Area</label>
+                                @if($car->source->id =='11')
+                                <select name="source_id" ui-jq="chosen" class="w-full">
+                                    <option>{{ $car->source->title  }}</option>
+                                </select>
+                                @else
                                 <select name="source_id" ui-jq="chosen" class="w-full" disabled>
                                     <option>{{ $car->source->title  }}</option>
                                 </select>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">

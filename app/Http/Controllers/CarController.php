@@ -151,16 +151,13 @@ class CarController extends Controller
     public function search( Request $request )
     {
 
-
-
         $search_dropdown = $request->get('search');
         $cars = Car::WhereHas('statuses', function ($query) use ($search_dropdown) {
-            $query->where('title', 'like', '%'.'Unit Head’s Acceptance'.'%');
-            });
+             $query->where('title', 'like', '%'.$search_dropdown.'%');
+              });
         $statuses = Status::orderBy('id', 'asc')->get();
         //dd($statuses ->toArray());
         //return $cars;
-
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
 
