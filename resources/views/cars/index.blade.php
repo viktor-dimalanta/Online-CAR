@@ -20,9 +20,7 @@
                         Filter
                         <select class="input-sm form-control w-sm inline v-middle" name ="search">
                             <option value="0">--Select Status--</option>
-                            @foreach ($statuses as $status)
-                                <option value="{{ $status->id }}">{{ $status->title }}</option>
-                            @endforeach
+                            
                             <option value="Unit Head’s Acceptance">Unit Head’s Acceptance</option>
                         </select>
                         <button class="btn btn-sm btn-default">Apply</button>
