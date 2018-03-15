@@ -52,8 +52,8 @@
 
                             </td>
                             <td class="text-right">
-
-                                {{$car->statuses()->sortyByDesc('id')->title}}
+                                try
+                                {{$car->statuses()->sortyByASC('id')->title}}
 
                             </td>
                             <td>
