@@ -34,11 +34,11 @@ class CarController extends Controller
     public function index()
     {
 
-        $cars = Car::paginate(10)
-                    ->latest()
+        $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
                     ->get();
+        $cars = Car::paginate(10);
         /*$cars = DB::table('cars')
                 ->where('originator_id' , '=', Auth::id())
                 ->orWhere('assignee_id' , '=', Auth::id())
