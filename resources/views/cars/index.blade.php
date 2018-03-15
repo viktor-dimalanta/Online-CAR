@@ -72,9 +72,7 @@
                     </table>
                     <footer class="panel-footer">
                         <div class="row">
-                          <div style="float: left; margin-left: 10px;">Showing {{($cars->currentpage()-1)*$cars->perpage()+1}} to {{$cars->currentpage()*$cars->perpage()}}
-                             of  {{$cars->total()}} entries
-                         </div>
+                          
                         </div>
                     </footer>
                     @else
