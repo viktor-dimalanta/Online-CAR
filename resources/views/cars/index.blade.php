@@ -15,14 +15,17 @@
                         {{--<span class="label bg-info pull-right m-t-xs" style="margin-left: 5px;">2 left</span>--}}
                         {{--<span class="label bg-warning pull-right m-t-xs" style="margin-left: 5px;">3 left</span>--}}
                         {{--<span class="label bg-success pull-right m-t-xs" style="margin-left: 5px;">4 left</span>--}}
+                        <form action="/search" method="POST" role="search" style=" display:inline!important;">
+                          {{ csrf_field() }}
                         Filter
-                        <select class="input-sm form-control w-sm inline v-middle">
+                        <select class="input-sm form-control w-sm inline v-middle" name ="search">
                             <option value="0">--Select Status--</option>
                             @foreach ($statuses as $status)
                                 <option value="{{ $status->id }}">{{ $status->title }}</option>
                             @endforeach
                         </select>
                         <button class="btn btn-sm btn-default">Apply</button>
+                      </form>
                     </div>
 
                     @if (count($cars) > 0)

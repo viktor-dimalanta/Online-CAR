@@ -148,6 +148,23 @@ class CarController extends Controller
         return view('cars.show', compact('car', 'notifications'));
     }
 
+    public function search( Request $request )
+    {
+
+        $search_dropdown = $request->get('search');
+        $cars = Car::WhereHas('status', function ($query) use ($q) {
+             $query->where('title', 'like', '%'.$search_dropdown.'%');
+                })
+
+
+
+      //  where('status','like','%'.$search_dropdown.'%');
+
+        //$q = Input::get ( 'q' );
+
+        return view('index',compact('cars'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
