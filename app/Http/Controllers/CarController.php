@@ -154,7 +154,7 @@ class CarController extends Controller
         $search_dropdown = $request->get('search');
         $cars = Car::WhereHas('status', function ($query) use ($q) {
              $query->where('title', 'like', '%'.$search_dropdown.'%');
-                })
+           });
 
 
 
