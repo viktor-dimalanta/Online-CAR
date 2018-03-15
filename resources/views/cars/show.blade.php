@@ -5,7 +5,7 @@
         {{ csrf_field() }}
 
         <div class="bg-light lter b-b wrapper-md">
-            <h1 class="m-n font-normal h3"><label style="color: #999;">Status:</label> {{ $car->statuses->last()->title }} </h1>
+            <h1 class="m-n font-normal h3"><label style="color: #999;">Status:</label> {{ $car->statuses->title }} </h1>
         </div>
 
         <div>&nbsp;</div>
@@ -29,7 +29,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Source Area</label>
-                                @if($car->statuses->last()->title == 'Draft')
+                                @if($car->statuses->title == 'Draft')
                                 <select name="source_id" ui-jq="chosen" class="w-full">
                                     <option>{{ $car->source->title  }}</option>
                                 </select>
