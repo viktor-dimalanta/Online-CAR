@@ -33,10 +33,10 @@ class CarController extends Controller
      */
     public function index()
     {
+        $cars2 = Car::paginate(10);
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
-                    ->paginate(10)
                     ->get();
         /*$cars = DB::table('cars')
                 ->where('originator_id' , '=', Auth::id())
