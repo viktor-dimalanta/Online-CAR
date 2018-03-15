@@ -155,7 +155,15 @@ class CarController extends Controller
         $cars = Car::WhereHas('statuses', function ($query) use ($search_dropdown) {
              $query->where('title', 'like', '%'.$search_dropdown.'%');
            });
-        return view('cars.index',compact('cars'));
+        $statuses = Status::orderBy('id', 'asc')
+                       ->get();
+        //dd($statuses ->toArray());
+        //return $cars;
+
+        $user = User::find(Auth::id());
+        $notifications = $user->notifications;
+
+           return view('cars.index', compact('cars', 'statuses', 'notifications'));
     }
 
     /**
