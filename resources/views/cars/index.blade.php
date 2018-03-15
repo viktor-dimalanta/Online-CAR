@@ -53,7 +53,7 @@
                             </td>
                             <td class="text-right">
                                 try
-                                {{$car->statuses()->title}}
+                                {{$car->statuses()->first()->title}}
 
                             </td>
                             <td>
