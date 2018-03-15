@@ -52,7 +52,7 @@ class CarController extends Controller
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
 
-        return view('cars.index', compact('cars', 'statuses', 'notifications'));
+        return view('cars.index', compact('cars', 'statuses', 'notifications','cars2'));
     }
 
     /**
