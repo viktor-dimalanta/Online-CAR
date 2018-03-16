@@ -42,6 +42,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                          {{$cars}}
                         @foreach ($cars as $car)
                         <tr>
                             <td>{{ $car->id }}</td>
