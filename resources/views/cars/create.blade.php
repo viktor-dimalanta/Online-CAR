@@ -64,7 +64,6 @@
                                 </select>
                             </div>
                         </div>
-                        <input type="text" value="1" name="draft_stat" class="form-control"/>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Document / Reference no.</label>
