@@ -4,7 +4,7 @@
     <div class="bg-light lter b-b wrapper-md">
         <h1 class="m-n font-thin h3">All CARs</h1>
     </div>
-
+    {{$cars}}
     <div class="wrapper-md">
 
         <div class="row">
@@ -42,7 +42,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                          {{$cars}}
+
                         @foreach ($cars as $car)
                         <tr>
                             <td>{{ $car->id }}</td>
