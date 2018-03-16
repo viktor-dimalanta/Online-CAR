@@ -36,8 +36,8 @@ class CarController extends Controller
 
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
-                    ->where('draft' , '=', '0')
                     ->orWhere('assignee_id' , '=', Auth::id())
+                    ->where('draft' , '=', '0')
                     ->get();
         //$cars = Car::paginate(10);
         /*$cars = DB::table('cars')
