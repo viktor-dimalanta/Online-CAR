@@ -110,7 +110,7 @@ class CarController extends Controller
         $car->classification_id = $request->classification_id;
         $car->description = $request->description;
         $car->document_no = $request->document_no;
-        $car->draft = 1;
+        $car->draft = '1';
         $car->save();
 
 
