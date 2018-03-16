@@ -110,6 +110,7 @@ class CarController extends Controller
         if ($request->has('draft_button')) {
           $statusDefault = 11;
           $car->draft = 1;
+          $car->save();
         }
 
         $status = Status::find($statusDefault);
