@@ -45,7 +45,7 @@ class CarController extends Controller
                 ->get();*/
         //dd($cars->toArray());
 
-        $statuses = Status::where('id','<>','11')
+        $statuses = Status::where('status_id','<>','11')
                     ->orderBy('id', 'asc')
                     ->get();
         //dd($statuses ->toArray());
