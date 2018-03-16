@@ -49,14 +49,10 @@
                                 {{ str_limit($car->description, 300, '...') }}
                             </td>
                             <td class="text-left">
-                                {{-- $car->assignee->first_name --}}
-
-
                                 {{ $car->assignee->first_name }}
-
                             </td>
                             <td class="text-right">
-                              {{ $car->statuses->last()->title }}
+                                {{ $car->statuses->last()->title }}
 
                             </td>
                             <td>
