@@ -53,7 +53,7 @@
                                 {{ $car->assignee->first_name }}
                             </td>
                             <td class="text-right">
-                                {{ $car->statuses->last()->title }}
+                                {{ $car->statuses->first()->title }}
 
                             </td>
                             <td>
