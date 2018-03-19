@@ -121,7 +121,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12" {{$displaynone}}>
+                        <div class="col-sm-12" style="display:none">
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12  text-center">
