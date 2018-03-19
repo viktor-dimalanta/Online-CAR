@@ -54,7 +54,7 @@
                             </td>
                             <td class="text-right">
 
-                                {{ $car->statuses()->title }}
+                                {{ $car->statuses->first->title }}
 
 
                             </td>
