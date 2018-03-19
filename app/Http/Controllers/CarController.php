@@ -33,6 +33,8 @@ class CarController extends Controller
      */
     public function index()
     {
+      $current_user_type = Auth::type();
+      console.log('$current_user_type');
 
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
