@@ -31,7 +31,7 @@ class Car extends Model
     public function statuses()
     {
         return $this->belongsToMany(Status::class, 'car_status')
-                    ->where('car_status.status_id','<>','11')
+                  //  ->where('car_status.status_id','<>','11')
                     ->orderBy('car_status.id');
     }
 
