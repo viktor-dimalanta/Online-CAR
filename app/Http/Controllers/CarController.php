@@ -37,7 +37,7 @@ class CarController extends Controller
         //dd($current_user_type);
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
-                    ->orWhere('assignee_id' , '=', Auth::id())
+                    ->orWhere('assignee_id' , '=', Auth::id()->where('is_draft' , '=', '1'))
                     ->where('is_draft' , '=', '0')
                     ->get();
 
