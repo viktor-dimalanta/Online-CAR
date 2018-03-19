@@ -23,9 +23,9 @@
                     A. Source Area Details
                 </div>
 @if($car->statuses->last()->title == 'Draft')
-<?php $var = 'disabled'; ?>
+<?php $disabledcomponent = ''; ?>
 @else
-<?php $var = ''; ?>
+<?php $disabledcomponent = 'disabled'; ?>
 @endif
                 <div class="row">
                     <div class="panel-body">
@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label>Source Area</label>
 
-                                <select name="source_id" ui-jq="chosen" class="w-full" {{$var}}>
+                                <select name="source_id" ui-jq="chosen" class="w-full" {{$disabledcomponent}}>
                                     <option>{{ $car->source->title  }}</option>
                                 </select>
 
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label>Unit Head</label>
 
-                                <select name="assignee_id" ui-jq="chosen" class="w-full" {{$var}}>
+                                <select name="assignee_id" ui-jq="chosen" class="w-full" {{$disabledcomponent}}>
                                     <option value="">{{ $car->assignee->first_name }} {{ $car->assignee->last_name }}</option>
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Classification</label>
-                                <select name="classification_id" ui-jq="chosen" class="w-full" disabled>
+                                <select name="classification_id" ui-jq="chosen" class="w-full" {{$disabledcomponent}}>
                                     <option value="">{{ $car->classification->title  }}</option>
                                 </select>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Document / Reference no.</label>
-                                <input value="{{ $car->document_no }}" disabled name="document_no" type="text" class="form-control" placeholder="Enter document number">
+                                <input value="{{ $car->document_no }}" {{$disabledcomponent}} name="document_no" type="text" class="form-control" placeholder="Enter document number">
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label>Description</label>
                                 <div class="col-sm-12" style="padding: 0;">
-                                    <textarea name="description" disabled class="form-control" rows="8" cols="80">{{ $car->description }}</textarea>
+                                    <textarea name="description" {{$disabledcomponent}} class="form-control" rows="8" cols="80">{{ $car->description }}</textarea>
                                 </div>
                             </div>
                         </div>
