@@ -33,7 +33,7 @@ class CarController extends Controller
      */
     public function index()
     {
-      $current_user_type = Auth::type();
+      $current_user_type = {{ Auth::user()->type }}
       console.log('$current_user_type');
 
         $cars = Car::latest()
