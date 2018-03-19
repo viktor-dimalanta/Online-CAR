@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="panel-heading font-bold">
-                    B. CAR Details
+                    B. CAR Details2
                 </div>
 
                 <div class="row">
