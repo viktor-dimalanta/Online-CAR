@@ -125,7 +125,7 @@
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12  text-center">
-                                    <button type="submit" class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-default">Cancel2</button>
                                     <button type="submit" class="btn btn-success">Submit CAR</button>
                                 </div>
                             </div>
