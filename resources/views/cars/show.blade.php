@@ -27,7 +27,7 @@
                     @php $displaynone = ''; @endphp
                   @else
                     @php $disabledcomponent = 'disabled'; @endphp
-                    @php $displaynone ='style="display:none"'; @endphp
+                    @php $displaynone ='none'; @endphp
                   @endif
                 <div class="row">
                     <div class="panel-body">
@@ -90,9 +90,9 @@
                         <div class="col-sm-12">
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
-                                <div class="col-sm-12 {{-- text-center--}} " style="display:none;">
-                                    <a href="{{ route('index') }}" class="btn btn-default">Cancel2</a>
-                                    <button type="submit" class="btn btn-warning" name="draft_button">Draft</button>
+                                <div class="col-sm-12 {{-- text-center--}}" style="display: {{ $displaynone }}">
+                                    <a href="{{ route('index') }}" class="btn btn-default">Cancel</a>
+                                    <button type="submit" class="btn btn-warning" name="draft_button">Save Draft</button>
                                     <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12  text-center">
-                                    <button type="submit" class="btn btn-default">Cancel2</button>
+                                    <button type="submit" class="btn btn-default">Cancel</button>
                                     <button type="submit" class="btn btn-success">Submit CAR</button>
                                 </div>
                             </div>
