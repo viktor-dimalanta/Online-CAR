@@ -27,7 +27,7 @@
                     @php $displaynone = ''; @endphp
                   @else
                     @php $disabledcomponent = 'disabled'; @endphp
-                    @php $displaynone ='style="display:none;"'; @endphp
+                    @php $displaynone ='style="display:none"'; @endphp
                   @endif
                 <div class="row">
                     <div class="panel-body">
