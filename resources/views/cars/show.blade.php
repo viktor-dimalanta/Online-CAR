@@ -22,11 +22,13 @@
                 <div class="panel-heading font-bold">
                     A. Source Area Details
                 </div>
-@if($car->statuses->last()->title == 'Draft')
-<?php $disabledcomponent = ''; ?>
-@else
-<?php $disabledcomponent = 'disabled'; ?>
-@endif
+                  @if($car->statuses->last()->title == 'Draft')
+                  <?php $disabledcomponent = ''; ?>
+                  <?php $displaynone = ''; ?>
+                  @else
+                  <?php $disabledcomponent = 'disabled'; ?>
+                  <?php $displaynone = 'display:none'; ?>
+                  @endif
                 <div class="row">
                     <div class="panel-body">
 
@@ -84,6 +86,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-sm-12">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <div class="col-sm-12 {{-- text-center--}}">
+                                    <a href="{{ route('index') }}" class="btn btn-default">Cancel</a>
+                                    <button type="submit" class="btn btn-warning" name="draft_button">Draft</button>
+                                    <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
+                                </div>
+                            </div>
+                        </div>
+
                         {{--
 
                         <div class="col-sm-12">
@@ -101,7 +115,7 @@
                         </div>
 
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" {{$displaynone}}>
                             <div class="col-sm-12 text-right wrapper">
                                 <button class="btn btn-dark btn-xs btn-rounded">Add attachment</button>
                             </div>
