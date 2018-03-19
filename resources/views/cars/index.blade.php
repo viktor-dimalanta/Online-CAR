@@ -60,7 +60,7 @@
                             </td>
                             <td>
                                 <div class="progress progress-sm active m-t-xs m-b-none">
-                                    <div class="progress-bar {{ $car->statuses->last()->style}}" data-toggle="tooltip" data-original-title="100%" style="width: 100%"></div>
+                                    <div class="progress-bar {{ $car->statuses->first->style}}" data-toggle="tooltip" data-original-title="100%" style="width: 100%"></div>
                                 </div>
                             </td>
                             <td class="text-center">
