@@ -38,12 +38,11 @@ class CarController extends Controller
         if ($current_user_type == "originator") {
           $cars = Car::latest()
                       ->where('originator_id' , '=', Auth::id())
-                      ->where('is_draft' , '=', '1')
                       ->get();
         }else {
           $cars = Car::latest()
                       ->where('assignee_id' , '=', Auth::id())
-                      ->where('is_draft' , '=', '0')
+                      ->where('is_draft' , '=', '1')
                       ->get();
         }
 
