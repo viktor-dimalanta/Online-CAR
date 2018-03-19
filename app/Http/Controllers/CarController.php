@@ -39,7 +39,7 @@ class CarController extends Controller
                     ->orWhere('assignee_id' , '=', Auth::id())
                     ->where('is_draft' , '=', '0')
                     ->get();
-                    
+
         //$cars = Car::paginate(10);
         /*$cars = DB::table('cars')
                 ->where('originator_id' , '=', Auth::id())
@@ -47,7 +47,7 @@ class CarController extends Controller
                 ->get();*/
         //dd($cars->toArray());
 
-        $statuses = Status::orderBy('id', 'asc')
+        $statuses = Status::orderBy('id', 'desc')
                     ->get();
         //dd($statuses ->toArray());
         //return $cars;
