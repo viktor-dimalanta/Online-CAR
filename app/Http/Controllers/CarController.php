@@ -108,8 +108,10 @@ class CarController extends Controller
         // 2. Add new Car record
         if ($request->has('draft_button')) {
           $statusDefault = 11;
-          $car->is_draft = 1;
-          }
+          $car_draft = 1;
+        }else {
+          $car_draft = 0;
+        }
 
         $car = new Car;
         $car->originator_id = auth()->user()->id;
@@ -118,7 +120,7 @@ class CarController extends Controller
         $car->classification_id = $request->classification_id;
         $car->description = $request->description;
         $car->document_no = $request->document_no;
-        $car->is_draft = 1;
+        $car->is_draft = $car_draft;
         $car->save();
 
 
