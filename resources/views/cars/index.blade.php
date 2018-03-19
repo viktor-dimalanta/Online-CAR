@@ -5,7 +5,6 @@
         <h1 class="m-n font-thin h3">All CAR</h1>
     </div>
     <div class="wrapper-md">
-      {{$cars}}
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default {{--panel-info--}}">
