@@ -115,7 +115,7 @@
                         </div>
 
 
-                        <div class="col-sm-12" {{$displaynone}}>
+                        <div class="col-sm-12" style="display:none" >
                             <div class="col-sm-12 text-right wrapper">
                                 <button class="btn btn-dark btn-xs btn-rounded">Add attachment</button>
                             </div>
