@@ -33,12 +33,12 @@ class CarController extends Controller
      */
     public function index()
     {
-      $current_user_type = Auth::user()->type;
-      dd($current_user_type);
+        $current_user_type = Auth::user()->type;
+        //dd($current_user_type);
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
-                    ->where('is_draft' , '=', '0')
+                    ->where('is_draft' , '=', '1')
                     ->get();
 
         //$cars = Car::paginate(10);
