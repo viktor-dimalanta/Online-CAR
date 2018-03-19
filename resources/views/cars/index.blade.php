@@ -53,9 +53,9 @@
                                 {{ $car->assignee->first_name }}
                             </td>
                             <td class="text-right">
-                              {{--
+
                                 {{ $car->statuses->last()->title }}
-                                --}}
+
 
                             </td>
                             <td>
