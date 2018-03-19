@@ -42,7 +42,7 @@ class CarController extends Controller
         }else {
           $cars = Car::latest()
                       ->where('assignee_id' , '=', Auth::id())
-                      ->where('is_draft' , '=', 0)
+                      ->where('is_draft' , '=', 1)
                       ->get();
         }
 
