@@ -87,7 +87,16 @@
                             </div>
                         </div>
 
-                        
+                        <div class="col-sm-12">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <div class="col-sm-12 {{-- text-center--}} " style="display:none;">
+                                    <a href="{{ route('index') }}" class="btn btn-default">Cancel2</a>
+                                    <button type="submit" class="btn btn-warning" name="draft_button">Draft</button>
+                                    <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
+                                </div>
+                            </div>
+                        </div>
 
                         {{--
 
@@ -116,7 +125,7 @@
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12  text-center">
-                                    <button type="submit" class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-default">Cancel2</button>
                                     <button type="submit" class="btn btn-success">Submit CAR</button>
                                 </div>
                             </div>
