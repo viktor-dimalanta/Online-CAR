@@ -22,28 +22,29 @@
                 <div class="panel-heading font-bold">
                     A. Source Area Details
                 </div>
-
+@if($car->statuses->last()->title == 'Draft')
+<?php $var = 'disabled'; ?>
+@else
+<?php $var = ''; ?>
+@endif
                 <div class="row">
                     <div class="panel-body">
 
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Source Area</label>
-                                @if($car->statuses->last()->title == 'Draft')
-                                <select name="source_id" ui-jq="chosen" class="w-full">
+
+                                <select name="source_id" ui-jq="chosen" class="w-full" {{$var}}>
                                     <option>{{ $car->source->title  }}</option>
                                 </select>
-                                @else
-                                <select name="source_id" ui-jq="chosen" class="w-full" disabled>
-                                    <option>{{ $car->source->title  }}</option>
-                                </select>
-                                @endif
+
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Unit Head</label>
-                                <select name="assignee_id" ui-jq="chosen" class="w-full" disabled>
+
+                                <select name="assignee_id" ui-jq="chosen" class="w-full" {{$var}}>
                                     <option value="">{{ $car->assignee->first_name }} {{ $car->assignee->last_name }}</option>
                                 </select>
                             </div>
@@ -79,7 +80,7 @@
                             <div class="form-group">
                                 <label>Description</label>
                                 <div class="col-sm-12" style="padding: 0;">
-                                    <textarea name="description" class="form-control" rows="8" cols="80">{{ $car->description }}</textarea>
+                                    <textarea name="description" disabled class="form-control" rows="8" cols="80">{{ $car->description }}</textarea>
                                 </div>
                             </div>
                         </div>
