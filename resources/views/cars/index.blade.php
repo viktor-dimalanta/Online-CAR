@@ -5,7 +5,7 @@
         <h1 class="m-n font-thin h3">All CAR</h1>
     </div>
     <div class="wrapper-md">
-
+      {{$cars}}
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default {{--panel-info--}}">
@@ -52,10 +52,7 @@
                                 {{ $car->assignee->first_name }}
                             </td>
                             <td class="text-right">
-
                                 {{ $car->statuses->last()->title }}
-
-
                             </td>
                             <td>
                                 <div class="progress progress-sm active m-t-xs m-b-none">

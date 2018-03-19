@@ -35,9 +35,12 @@ class CarController extends Controller
     {
         $current_user_type = Auth::user()->type;
         //dd($current_user_type);
+        // if ($current_user_type == "originator") {
+        //   # code...
+        // }
         $cars = Car::latest()
                     ->where('originator_id' , '=', Auth::id())
-                    ->orWhere('assignee_id' , '=', Auth::id()->where('is_draft' , '=', '1'))
+                    ->orWhere('assignee_id' , '=', Auth::id())
                     ->where('is_draft' , '=', '0')
                     ->get();
 
