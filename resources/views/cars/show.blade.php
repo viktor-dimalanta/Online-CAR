@@ -23,11 +23,11 @@
                     A. Source Area Details
                 </div>
                   @if($car->statuses->last()->title == 'Draft')
-                  <?php $disabledcomponent = ''; ?>
-                  <?php $displaynone = ''; ?>
+                    @php $disabledcomponent = ''; @endphp
+                    @php $displaynone = ''; @endphp
                   @else
-                  <?php $disabledcomponent = 'disabled'; ?>
-                  <?php $displaynone ='style="display:none;";'?>
+                    @php $disabledcomponent = 'disabled'; @endphp
+                    @php $displaynone ='style="display:none;"'; @endphp
                   @endif
                 <div class="row">
                     <div class="panel-body">
