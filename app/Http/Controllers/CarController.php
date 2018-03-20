@@ -35,16 +35,23 @@ class CarController extends Controller
     {
         $current_user_type = Auth::user()->type;
         //dd($current_user_type);
-        if ($current_user_type == "originator") {
-          $cars = Car::latest()
-                      ->where('originator_id' , '=', Auth::id())
-                      ->get();
-        }else {
-          $cars = Car::latest()
-                      ->where('assignee_id' , '=', Auth::id())
-                      ->where('is_draft' , '=',0)
-                      ->get();
-        }
+        // if ($current_user_type == "originator") {
+        //   $cars = Car::where('originator_id' , '=', Auth::id())
+        //               ->latest()
+        //               ->paginate(10);
+        // }else {
+        //   $cars = Car::where('assignee_id' , '=', Auth::id())
+        //               ->latest()
+        //               ->paginate(10);
+        // }
+
+        $cars = Car::where('originator_id' , '=', Auth::id())
+                    ->orWhere('assignee_id' , '=', Auth::id())
+                    ->whereHas('statuses', function($query){
+                        $query->where('title', '<>', 'Draft');
+                    })
+                    ->latest()
+                    ->paginate(10);
 
 
         //$cars = Car::paginate(10);
@@ -167,10 +174,25 @@ class CarController extends Controller
     {
 
         $search_dropdown = $request->get('search');
-        $cars = Car::WhereHas('statuses', function ($query) use ($search_dropdown) {
-             $query->where('title', 'like', '%'.$search_dropdown.'%');
-              });
-        $statuses = Status::orderBy('id', 'asc')->get();
+        //dd($search_dropdown);
+        // $cars = Car::WhereHas('statuses', function ($query) use ($search_dropdown) {
+        //      $query->where('title', 'like', '%'.$search_dropdown.'%');
+        //       });
+
+        $cars = Car::whereHas('statuses', function($query){
+                        $query->where('title', '=', 'Draft')
+                              ->orderBy('car_status.id', 'desc');
+
+                    })
+
+                    ->where('originator_id' , '=', Auth::id())
+                    ->orWhere('assignee_id' , '=', Auth::id())
+
+                    ->paginate(10);
+
+        //$cars = Car::paginate(10);
+
+        $statuses = Status::orderBy( 'id' , 'desc');
         //dd($statuses ->toArray());
         //return $cars;
         $user = User::find(Auth::id());

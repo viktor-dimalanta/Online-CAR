@@ -16,33 +16,25 @@
                         <form action="/search" method="POST" role="search" style=" display:inline!important;">
                           {{ csrf_field() }}
                         Filter
-                        <select class="input-sm form-control w-sm inline v-middle" name ="search">
+                        <select class="input-sm form-control w-sm inline v-middle" name ="search" >
                             <option value="0">--Select Status--</option>
                             @foreach ($statuses as $status)
-                                <option value="{{ $status->id }}">{{ $status->title }}</option>
+                                <option  value="{{ $status->title }}">{{ $status->title }}</option>
                             @endforeach
                             <option value="Unit Head’s Acceptance">Unit Head’s Acceptance</option>
                         </select>
-                        <button class="btn btn-sm btn-default">Apply</button>
+                        <button href="{{ route('search') }}" class="btn btn-sm btn-default">Apply</button>
                       </form>
                     </div>
 
                     @if (count($cars) > 0)
-      
-                    @php echo $current_user_type; @endphp
-
-                    @if($current_user_type == 'originator')
-                      @php $displaynone = 'none'; @endphp
-                    @else
-                      @php $displaynone =''; @endphp
-                    @endif
 
                     <table class="table table-striped m-b-none">
                         <thead>
                         <tr>
                             <th style="width: 6%">ID</th>
                             <th style="width: 30%;">Description</th>
-                            <th class="text-left" style="width: 10%; display: {{ $displaynone }}">Originator</th>
+                            <th class="text-left" style="width: 10%">Originator</th>
                             <th class="text-left" style="width: 10%">Unit Head</th>
                             <th class="text-right" style="width: 20%">Status</th>
                             <th class="text-left" style="width: 8%"></th>
@@ -50,6 +42,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                          {{--
+
+                          @if($car->statuses->last()->title == 'Draft')
+                            @php $disabledcomponent = ''; @endphp
+                            @php $displaynone = ''; @endphp
+                          @else
+                            @php $disabledcomponent = 'disabled'; @endphp
+                            @php $displaynone ='none'; @endphp
+                          @endif
+
+                          --}}
 
                         @foreach ($cars as $car)
                         <tr>
@@ -58,7 +61,7 @@
                             <td>
                                 {{ str_limit($car->description, 300, '...') }}
                             </td>
-                            <td  style="display: {{ $displaynone }}">
+                            <td>
                             {{ $car->originator->first_name }} {{ $car->originator->last_name }}
                             </td>
                             <td class="text-left">
@@ -87,17 +90,16 @@
                             <div class="col-sm-4 hidden-xs">
                             </div>
                             <div class="col-sm-4 text-center">
-                                <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                              <br />
+
+                              <div>Showing {{($cars->currentpage()-1)*$cars->perpage()+1}} to {{$cars->currentpage()*$cars->perpage()}}
+                                 of  {{$cars->total()}} entries
+                             </div>
+                             {{$cars}}
                             </div>
                             <div class="col-sm-4 text-right text-center-xs">
                                 <ul class="pagination pagination-sm m-t-none m-b-none">
-                                    <li><a href><i class="fa fa-chevron-left"></i></a></li>
-                                    <li><a href>1</a></li>
-                                    <li><a href>2</a></li>
-                                    <li><a href>3</a></li>
-                                    <li><a href>4</a></li>
-                                    <li><a href>5</a></li>
-                                    <li><a href><i class="fa fa-chevron-right"></i></a></li>
+
                                 </ul>
                             </div>
                         </div>

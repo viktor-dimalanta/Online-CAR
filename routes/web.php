@@ -16,7 +16,7 @@ Route::get('/login', 'LoginController@create');
 Route::post('/login', 'LoginController@authenticate');
 Route::get('/logout', 'LoginController@destroy');
 //Route::post('/login', [ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
-Route::any('/search', 'CarController@search');
+Route::any('/search', 'CarController@search')->name('search');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 
