@@ -28,11 +28,21 @@
                     </div>
 
                     @if (count($cars) > 0)
+      
+                    @php echo $current_user_type; @endphp
+
+                    @if($current_user_type == 'originator')
+                      @php $displaynone = 'none'; @endphp
+                    @else
+                      @php $displaynone =''; @endphp
+                    @endif
+
                     <table class="table table-striped m-b-none">
                         <thead>
                         <tr>
                             <th style="width: 6%">ID</th>
-                            <th style="width: 50%;">Description</th>
+                            <th style="width: 30%;">Description</th>
+                            <th class="text-left" style="width: 10%; display: {{ $displaynone }}">Originator</th>
                             <th class="text-left" style="width: 10%">Unit Head</th>
                             <th class="text-right" style="width: 20%">Status</th>
                             <th class="text-left" style="width: 8%"></th>
@@ -44,11 +54,15 @@
                         @foreach ($cars as $car)
                         <tr>
                             <td>{{ $car->id }}</td>
+
                             <td>
                                 {{ str_limit($car->description, 300, '...') }}
                             </td>
+                            <td  style="display: {{ $displaynone }}">
+                            {{ $car->originator->first_name }} {{ $car->originator->last_name }}
+                            </td>
                             <td class="text-left">
-                                {{ $car->assignee->first_name }}
+                                {{ $car->assignee->first_name }} {{ $car->assignee->last_name }}
                             </td>
                             <td class="text-right">
                                 {{ $car->statuses->last()->title }}
