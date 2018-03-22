@@ -62,15 +62,15 @@
         <!-- / link and dropdown -->
 
         <!-- search form -->
-        <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" data-target=".navbar-collapse"
-              role="search" ng-controller="TypeaheadDemoCtrl">
+        <form class="navbar-form navbar-form-sm navbar-left shift" action="/search_cars" method="POST" role="search">
+          {{ csrf_field() }}
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" ng-model="selected"
+                    <input type="text" ng-model="selected" name="search_cars"
                            typeahead="state for state in states | filter:$viewValue | limitTo:8"
                            class="form-control input-sm bg-light no-border rounded padder" placeholder="Search CARs...">
                     <span class="input-group-btn">
-            <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+            <button href="{{ route('search_cars') }}" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
           </span>
                 </div>
             </div>

@@ -35,6 +35,12 @@ class Car extends Model
                     //->latest();
                     ->orderBy('car_status.id', 'asc');
     }
+    public function search_statuses()
+    {
+        return $this->belongsToMany(Status::class, 'car_status')
+                    ->latest();
+
+    }
 
 
     /*public function status()

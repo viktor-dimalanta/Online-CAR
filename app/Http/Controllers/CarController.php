@@ -162,12 +162,14 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
+
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
+        $cars = Car::all();
 
         //dd($car->toArray());
         //dd($car->messages());
-        return view('cars.show', compact('car', 'notifications'));
+        return view('cars.show', compact('car', 'notifications','cars'));
     }
 
     public function search( Request $request )
@@ -187,6 +189,7 @@ class CarController extends Controller
 
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
+                    ->latest()
 
                     ->paginate(10);
 
@@ -199,6 +202,33 @@ class CarController extends Controller
         $notifications = $user->notifications;
 
            return view('cars.index', compact('cars', 'statuses', 'notifications'));
+    }
+
+    public function search_cars( Request $request )
+    {
+        $current_user_type = Auth::user()->type;
+        $search_cars = $request->get('search_cars');
+
+        if ($current_user_type=='originator') {
+          //dd("sass");
+          $cars = Car::where('originator_id' , '=', Auth::id())
+                     ->where('description','like','%'.$search_cars.'%')
+                     ->latest()
+                     ->paginate(10);
+        }elseif ($current_user_type=='assignee'){
+          $cars = Car::where('assignee_id' , '=', Auth::id()) //change this
+                     ->where('description','like','%'.$search_cars.'%')
+                     ->orwhere('originator_id' , '=', Auth::id())
+                     ->where('description','like','%'.$search_cars.'%')
+                     ->latest()
+                     ->paginate(10);
+        } else{}
+
+        $statuses = Status::orderBy( 'id' , 'desc');
+        $user = User::find(Auth::id());
+        $notifications = $user->notifications;
+
+        return view('cars.index', compact('cars', 'statuses', 'notifications'));
     }
 
     /**
@@ -221,7 +251,16 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //try
+      $car = Car::find($id);
+      $car->originator_id = auth()->user()->id;
+      $car->source_id = $request->source_id;
+      $car->assignee_id = $request->assignee_id;
+      $car->classification_id = $request->classification_id;
+      $car->description = $request->description;
+      $car->document_no = $request->document_no;
+      $car->is_draft = $car_draft;
+      $car->save();
     }
 
     /**
