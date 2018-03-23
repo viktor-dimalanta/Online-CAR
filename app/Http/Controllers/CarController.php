@@ -165,11 +165,12 @@ class CarController extends Controller
 
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
+        $sources = Source::all();
         $cars = Car::all();
 
         //dd($car->toArray());
         //dd($car->messages());
-        return view('cars.show', compact('car', 'notifications','cars'));
+        return view('cars.show', compact('car', 'notifications','cars','sources'));
     }
 
     public function search( Request $request )
@@ -177,27 +178,35 @@ class CarController extends Controller
 
         $search_dropdown = $request->get('search');
         //dd($search_dropdown);
-        // $cars = Car::WhereHas('statuses', function ($query) use ($search_dropdown) {
-        //      $query->where('title', 'like', '%'.$search_dropdown.'%');
-        //       });
+        $current_user_type = Auth::user()->type;
 
-        $cars = Car::whereHas('statuses', function($query){
-                        $query->where('title', '=', 'Draft')
-                              ->orderBy('car_status.id', 'desc');
-
-                    })
-
+        $cars = Car::where('is_draft', 1)
+        ->whereHas('search_statuses', function($query) use ($search_dropdown){
+                        $query->where('title','like', '%'.$search_dropdown.'%');
+                    })->latest()
                     ->where('originator_id' , '=', Auth::id())
                     ->orWhere('assignee_id' , '=', Auth::id())
-                    ->latest()
-
                     ->paginate(10);
 
-        //$cars = Car::paginate(10);
-
+                    // if ($search_dropdown == 'DRAFT') {
+                    // $cars = Car::where('is_draft', 1)
+                    // ->whereHas('search_statuses', function($query) use ($search_dropdown){
+                    //                 $query->where('code','like', '%'.$search_dropdown.'%');
+                    //             })->latest()
+                    //             ->where('originator_id' , '=', Auth::id())
+                    //             ->orWhere('assignee_id' , '=', Auth::id())
+                    //             ->paginate(10);
+                    // }else{
+                    //
+                    // $cars = Car::where('is_draft', 0)
+                    // ->whereHas('search_statuses', function($query) use ($search_dropdown){
+                    //                   $query->where('code','like', '%'.$search_dropdown.'%');
+                    //               })->latest()
+                    //               ->where('originator_id' , '=', Auth::id())
+                    //               ->orWhere('assignee_id' , '=', Auth::id())
+                    //               ->paginate(10);
+                    // }
         $statuses = Status::orderBy( 'id' , 'desc');
-        //dd($statuses ->toArray());
-        //return $cars;
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
 
@@ -210,7 +219,6 @@ class CarController extends Controller
         $search_cars = $request->get('search_cars');
 
         if ($current_user_type=='originator') {
-          //dd("sass");
           $cars = Car::where('originator_id' , '=', Auth::id())
                      ->where('description','like','%'.$search_cars.'%')
                      ->latest()
@@ -252,6 +260,14 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
       //try
+
+      $car = Car::find($id);
+      $source = Source::find($id);
+      $notification = Notification::find($id);
+      $status = Status::find($id);
+      $user = User::find($id);
+      return view('update', compact('car','source','notification','status','user'));
+
       $car = Car::find($id);
       $car->originator_id = auth()->user()->id;
       $car->source_id = $request->source_id;

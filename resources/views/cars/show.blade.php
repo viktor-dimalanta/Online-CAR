@@ -36,8 +36,12 @@
                             <div class="form-group">
                                 <label>Source Area</label>
 
-                                <select name="source_id" ui-jq="chosen" class="w-full" {{$disabledcomponent}}>
-                                    <option>{{ $car->source->title  }}</option>
+
+                                <select name="source_id" ui-jq="chosen" class="w-full "{{$disabledcomponent}}>
+                                    <option value="">---Choose---</option>
+                                    @foreach ($sources as $source)
+                                        <option value="{{ $source->id  }}">{{ $source->title }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>

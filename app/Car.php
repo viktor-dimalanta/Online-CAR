@@ -37,8 +37,7 @@ class Car extends Model
     }
     public function search_statuses()
     {
-        return $this->belongsToMany(Status::class, 'car_status')
-                    ->latest();
+        return $this->belongsToMany(Status::class, 'car_status');
 
     }
 
