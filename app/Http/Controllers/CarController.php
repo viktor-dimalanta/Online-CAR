@@ -247,7 +247,16 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 1. Update CAR status
+
+       // 2. Send car notif to originator
+       // ...
+    }
+
+    public function storeMessage(Request $request){
+      // 1. Save Messages
+
+     // 2. Send message notif
     }
 
     /**

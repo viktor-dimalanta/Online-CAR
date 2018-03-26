@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <form role="form" method="POST" action="{{ route('cars') }}">
         {{ csrf_field() }}
 
@@ -90,17 +91,133 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- show action if unit head accept --}}
+
+                        @if($car->statuses->last()->id == 1)
+                        @php $displaynone = ''; @endphp
+                        @php $displaydraftbutton = 'none'; @endphp
+                        @else
+                        @php $displaynone ='none'; @endphp
+                        @php $displaydraftbutton = ''; @endphp
+                        @endif
+
+
+                        <div class="col-sm-12" style="display: {{ $displaynone }}">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label>Choose Action</label><br />
+                                <input name="action" type="radio" id="chkAccept" value="accept" onclick="ShowHideDiv()"> Accept
+                                <input name="action" type="radio" value="revise" onclick="ShowHideDiv()"> Revise
+                                <input name="action" type="radio" value="reject"  onclick="ShowHideDiv()"> Reject
+                            </div>
+                        </div>
+                        <br />
+
+                        <div id="dvSolutions" style="display:none">
+                        <div class="panel-heading font-bold">
+                            C. Solutions
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label>Immediate Action</label>
+                                <div class="col-sm-12" style="padding: 0;">
+                                    <textarea name="immediate_action"  class="form-control" rows="8" cols="80"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Target Date</label>
+                            <div class="input-group date form-group" data-provide="datepicker">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <div  style="display: {{ $displaynone }}">
+                                  <a href="{{ route('index') }}" class="btn btn-success">Add More Immediate Action</a>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label>Root Cause Analysis</label>
+                                <div class="col-sm-12" style="padding: 0;">
+                                    <textarea name="immediate_action"  class="form-control" rows="8" cols="80"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Target Date</label>
+                            <div class="input-group date form-group" data-provide="datepicker">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <div  style="display: {{ $displaynone }}">
+                                  <a href="{{ route('index') }}" class="btn btn-success">Add More Root Cause Analysis</a>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label>Corrective Action</label>
+                                <div class="col-sm-12" style="padding: 0;">
+                                    <textarea name="immediate_action"  class="form-control" rows="8" cols="80"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Target Date</label>
+                            <div class="input-group date form-group" data-provide="datepicker">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <div  style="display: {{ $displaynone }}">
+                                  <a href="{{ route('index') }}" class="btn btn-success">Add More Corrective Action</a>
+                              </div>
+                          </div>
+                        </div>
+
+
+
+                        </div>
+
+
+
+
 
                         <div class="col-sm-12">
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12 {{-- text-center--}}" style="display: {{ $displaynone }}">
                                     <a href="{{ route('index') }}" class="btn btn-default">Cancel</a>
-                                    <button type="submit" class="btn btn-warning" name="draft_button">Save Draft</button>
+                                    <button type="submit" class="btn btn-warning" name="draft_button" style="display: {{ $displaydraftbutton }}" >Save Draft</button>
                                     <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                         {{--
 
