@@ -3,7 +3,7 @@
 @section('content')
 
     <form role="form" method="POST" action="{{ route('cars') }}">
-        {{ csrf_field() }}
+
 
         <div class="bg-light lter b-b wrapper-md">
             <h1 class="m-n font-normal h3"><label style="color: #999;">Status:</label> {{ $car->statuses->last()->title }} </h1>
@@ -101,17 +101,44 @@
                         @php $displaydraftbutton = ''; @endphp
                         @endif
 
+                        @if($current_user_type == "originator")
+                        @php $hidetooriginator = 'none'; @endphp
+                        @else
+                        @php $hidetooriginator =''; @endphp
+                        @endif
+
+                        @if($current_user_type == "assignee")
+                        @php $hidetounithead = 'none'; @endphp
+                        @else
+                        @php $hidetounithead =''; @endphp
+                        @endif
+
 
                         <div class="col-sm-12" style="display: {{ $displaynone }}">
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
+                                <input type="hidden" id="token" value="{{ csrf_token() }}">
+                              {{csrf_field()}}
+                              {{method_field('PATCH')}}
                                 <label>Choose Action</label><br />
-                                <input name="action" type="radio" id="chkAccept" value="accept" onclick="ShowHideDiv()"> Accept
-                                <input name="action" type="radio" value="revise" onclick="ShowHideDiv()"> Revise
-                                <input name="action" type="radio" value="reject"  onclick="ShowHideDiv()"> Reject
+                                <label><input type="radio" name="action" value="3" id="{{ $car->id }}"> Accept</label>
+                                <label><input type="radio" name="action"  value="12" id="{{ $car->id }}" > Revise</label>
+                                <label><input type="radio" name="action"  value="7" id="{{ $car->id }}" > Reject</label>
                             </div>
                         </div>
                         <br />
+
+                        <div class="col-sm-12" style="display: {{$hidetooriginator}}">
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <div class="col-sm-12 {{-- text-center--}}" style="display: {{ $displaynone }}">
+                                    <a href="{{ route('index') }}" class="btn btn-default">Cancel</a>
+                                    <a href="#" onclick="updateStat2(this.id);" id="{{ $car->id }}" class="btn btn-success" name="update_car_stat">Update Car Status</a>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         <div id="dvSolutions" style="display:none">
                         <div class="panel-heading font-bold">
@@ -136,7 +163,19 @@
                             </div>
                           </div>
                           <div class="form-group">
-                              <div  style="display: {{ $displaynone }}">
+                              <label>Acceptance By Originator</label>
+                          <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Accept</label>
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Revise</label>
+                          </div>
+                        </div>
+
+
+
+                          <div class="form-group">
+                              <div  style="display: {{ $hidetooriginator }}">
                                   <a href="{{ route('index') }}" class="btn btn-success">Add More Immediate Action</a>
                               </div>
                           </div>
@@ -158,8 +197,14 @@
                                 </div>
                             </div>
                           </div>
+                          <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Accept</label>
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Revise</label>
+                          </div>
                           <div class="form-group">
-                              <div  style="display: {{ $displaynone }}">
+                              <div  style="display: {{ $hidetooriginator }}">
                                   <a href="{{ route('index') }}" class="btn btn-success">Add More Root Cause Analysis</a>
                               </div>
                           </div>
@@ -181,8 +226,14 @@
                                 </div>
                             </div>
                           </div>
+                          <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Accept</label>
+                              <input type="checkbox" class="form-check-input" id="checkbox104" style="width:30px; height:30px;">
+                              <label class="form-check-label" for="checkbox104" style="margin-top: -33px;font-size: 18px; margin-left:40px; display:block;">Revise</label>
+                          </div>
                           <div class="form-group">
-                              <div  style="display: {{ $displaynone }}">
+                              <div  style="display: {{ $hidetooriginator }}">
                                   <a href="{{ route('index') }}" class="btn btn-success">Add More Corrective Action</a>
                               </div>
                           </div>
@@ -196,16 +247,18 @@
 
 
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" style="display: {{$hidetounithead}}">
                             <div class="line line-dashed b-b line-lg pull-in"></div>
                             <div class="form-group">
                                 <div class="col-sm-12 {{-- text-center--}}" style="display: {{ $displaynone }}">
                                     <a href="{{ route('index') }}" class="btn btn-default">Cancel</a>
                                     <button type="submit" class="btn btn-warning" name="draft_button" style="display: {{ $displaydraftbutton }}" >Save Draft</button>
-                                    <button type="submit" class="btn btn-success" name="save">Submit CAR</button>
+                                    <button type="button" class="btn btn-success" name="save">Submit CAR</button>
                                 </div>
                             </div>
                         </div>
+
+
 
 
 

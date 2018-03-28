@@ -67,7 +67,12 @@ class StatusTableSeeder extends Seeder
             [
                 'title' => 'Draft',
                 'code' => 'DRAFT',
-                'style' => 'bg-danger'
+                'style' => 'bg-secondary'
+            ]
+            [
+                'title' => 'Originator Revise',
+                'code' => 'ORIG_REVISE',
+                'style' => 'bg-secondary'
             ]
         ];
 

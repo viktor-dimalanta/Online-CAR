@@ -10,7 +10,8 @@ use App\Source;
 use App\User;
 use App\Classification;
 use App\Status;
-
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -80,6 +81,7 @@ class CarController extends Controller
     public function create()
     {
         $sources = Source::all();
+        $current_user_type = Auth::user()->type;
 
         $assignees = User::whereHas('roles', function($query){
             $query->where('name', 'assignee');
@@ -90,7 +92,7 @@ class CarController extends Controller
         $user = User::find(Auth::id());
         $notifications = $user->notifications;
 
-        return view('cars.create', compact('sources', 'assignees', 'classifications', 'notifications'));
+        return view('cars.create', compact('sources', 'assignees', 'classifications', 'notifications','$current_user_type'));
     }
 
     /**
@@ -164,13 +166,14 @@ class CarController extends Controller
     {
 
         $user = User::find(Auth::id());
+        $current_user_type = Auth::user()->type;
         $notifications = $user->notifications;
         $sources = Source::all();
         $cars = Car::all();
 
         //dd($car->toArray());
         //dd($car->messages());
-        return view('cars.show', compact('car', 'notifications','cars','sources'));
+        return view('cars.show', compact('car', 'notifications','cars','sources','current_user_type'));
     }
 
     public function search( Request $request )
@@ -286,6 +289,23 @@ class CarController extends Controller
       $car->document_no = $request->document_no;
       $car->is_draft = $car_draft;
       $car->save();
+    }
+
+    public function update_stat(Request $request){
+      // $q = 30;
+      // $e =6;
+       $stat = $_POST['stat'];
+       $id = $_POST['id'];
+
+      DB::table('car_status')->insert(
+          [
+              'car_id' => $id,
+              'status_id' =>$stat,
+
+          ]
+      );
+      return redirect('/cars');
+
     }
 
     /**

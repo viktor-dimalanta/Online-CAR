@@ -1,5 +1,6 @@
 <!-- header -->
 <header id="header" class="app-header navbar" role="menu">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- navbar header -->
     <div class="navbar-header bg-dark">
         <button class="pull-right visible-xs dk" ui-toggle-class="show" target=".navbar-collapse">
