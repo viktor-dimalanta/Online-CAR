@@ -291,6 +291,91 @@ class CarController extends Controller
       $car->save();
     }
 
+    public function submit_sol(Request $request){
+      $id = $_POST['id'];
+      $immediate_action = $_POST['immediate_action'];
+      $immediate_action_date = $_POST['immediate_action_date'];
+
+      $root_cause = $_POST['root_cause'];
+      $root_cause_date = $_POST['root_cause_date'];
+
+      $corrective_action = $_POST['corrective_action'];
+      $corrective_action_date = $_POST['corrective_action_date'];
+
+      // foreach ($immediate_action as $a ) {
+      //   echo $immediate_action[$a];
+      // }
+
+      // echo $immediate_action;
+      // echo $immediate_action_date;
+      // echo $root_cause;
+      // echo $root_cause_date;
+      // echo $corrective_action;
+      // echo $corrective_action_date;
+      // echo $id;
+
+        $id1 = DB::table('solutions')->insertGetId(
+          [
+              'type' => 1,
+              'description' =>$immediate_action,
+              'root_cause_type' =>0,
+              'target_date' =>$immediate_action_date,
+              'date_completed' =>$immediate_action_date,
+              'attachment' =>'none',
+              'status_originator' =>1,
+              'status_admin' =>1,
+          ]);
+        $id2 = DB::table('solutions')->insertGetId(
+              [
+                'type' => 2,
+                'description' =>$root_cause,
+                'root_cause_type' =>$root_cause,
+                'target_date' =>$root_cause_date,
+                'date_completed' =>$root_cause_date,
+                'attachment' =>'none',
+                'status_originator' =>1,
+                'status_admin' =>1,
+              ]);
+      $id3 = DB::table('solutions')->insertGetId(
+                  [
+                    'type' => 3,
+                    'description' =>$corrective_action,
+                    'root_cause_type' =>0,
+                    'target_date' =>$corrective_action_date,
+                    'date_completed' =>$corrective_action_date,
+                    'attachment' =>'none',
+                    'status_originator' =>1,
+                    'status_admin' =>1,
+                  ]);
+
+
+      DB::table('car_solution')->insert(
+            [
+              'car_id' => $id,
+              'solution_id' =>$id1,
+            ]);
+      DB::table('car_solution')->insert(
+            [
+              'car_id' => $id,
+              'solution_id' =>$id2,
+            ]);
+      DB::table('car_solution')->insert(
+            [
+                'car_id' => $id,
+                'solution_id' =>$id3,
+            ]);
+
+      DB::table('car_status')->insert(
+            [
+                'car_id' => $id,
+                'status_id' =>2,
+
+            ]
+            );
+
+    }
+
+
     public function update_stat(Request $request){
       // $q = 30;
       // $e =6;

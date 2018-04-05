@@ -47,6 +47,12 @@ class Car extends Model
 
     }
 
+    public function solutions()
+    {
+        return $this->belongsToMany(Solution::class, 'car_solution');
+
+    }
+
 
     /*public function status()
     {
